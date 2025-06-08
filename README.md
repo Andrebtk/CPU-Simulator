@@ -61,14 +61,20 @@ Choose an option from the interactive menu to test specific functionality.
 Supports pseudo-assembly files structured like:
 ```asm
 .DATA
-var1 DW 10
-var2 DB 42
-
+X DW 42
+arr DB 20,21,22,23
+Y DB 10
+threshold DB 4
 .CODE
-MOV AX, var1
-ADD AX, var2
-JMP END
-END:
+start: MOV AX,[X]
+MOV BX,[Y]
+MOV CX,0
+loop: CMP CX,[threshold]
+JZ done
+ADD AX,BX
+ADD CX,1
+JMP loop
+done: HALT
 ```
 
 ## 👨‍💻 Authors
